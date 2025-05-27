@@ -7,7 +7,7 @@ function App() {
 
   return (
     <main>
-      <div className="buttons">{diceElements}</div>
+      <div className="dice-container">{diceElements}</div>
     </main>
   );
 }

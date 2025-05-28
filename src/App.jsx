@@ -48,6 +48,21 @@ function App() {
 
   return (
     <main>
+      {isGameWin && (
+        <Confetti
+          numberOfPieces={300}
+          recycle={false}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            pointerEvents: 'none',
+            zIndex: 999,
+          }}
+        />
+      )}
       <h1 className="title">Tenzies</h1>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
@@ -61,7 +76,6 @@ function App() {
       <button className="roll-btn" onClick={rollDice}>
         {isGameWin ? 'New Game' : 'Roll dice'}
       </button>
-      {isGameWin && <Confetti />}
     </main>
   );
 }

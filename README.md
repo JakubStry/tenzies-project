@@ -3,7 +3,7 @@
 Simple and fun dice game built with **React**.  
 Your goal is to roll all dice until they are the same. Click each die to "hold" it between rolls.
 
-![Screenshot of the game](./screen-shot.png)
+!![Screenshot of the game](./screen-shot.png)
 
 ## 🧠 Rules
 

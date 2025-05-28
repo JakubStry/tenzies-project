@@ -16,6 +16,18 @@ function App() {
     }));
   }
 
+  function rollDice() {
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        if (die.isHeld) {
+          return die;
+        } else {
+          return { ...die, value: getRandomValue() };
+        }
+      })
+    );
+  }
+
   const toggleHold = (id) => {
     setDice((prevDice) =>
       prevDice.map((die) =>
@@ -31,7 +43,7 @@ function App() {
           <Die key={die.id} die={die} toggleHold={toggleHold} />
         ))}
       </div>
-      <button className="roll-btn" onClick={() => setDice(generateAllNewDice)}>
+      <button className="roll-btn" onClick={rollDice}>
         Roll dice
       </button>
     </main>

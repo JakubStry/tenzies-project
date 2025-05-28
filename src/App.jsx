@@ -4,6 +4,10 @@ import Die from './components/Die';
 function App() {
   const [dice, setDice] = useState(() => generateAllNewDice());
 
+  const isGameWin = dice.every(
+    (die) => die.isHeld && die.value === dice[0].value
+  );
+
   function getRandomValue() {
     return Math.floor(Math.random() * 6 + 1);
   }
@@ -17,6 +21,11 @@ function App() {
   }
 
   function rollDice() {
+    if (isGameWin) {
+      setDice(generateAllNewDice());
+      return;
+    }
+
     setDice((prevDice) =>
       prevDice.map((die) => {
         if (die.isHeld) {
@@ -44,7 +53,7 @@ function App() {
         ))}
       </div>
       <button className="roll-btn" onClick={rollDice}>
-        Roll dice
+        {isGameWin ? 'New Game' : 'Roll dice'}
       </button>
     </main>
   );

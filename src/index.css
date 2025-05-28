@@ -36,6 +36,19 @@ main {
   font-weight: 600;
 }
 
+.instructions {
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.win-text {
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: rgb(38, 38, 107);
+}
+
 .dice-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

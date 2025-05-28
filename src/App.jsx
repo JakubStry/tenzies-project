@@ -4,6 +4,7 @@ import Confetti from 'react-confetti';
 import Die from './components/Die';
 function App() {
   const [dice, setDice] = useState(() => generateAllNewDice());
+  const [attemps, setAttemps] = useState(0);
   const isGameWin = dice.every(
     (die) => die.isHeld && die.value === dice[0].value
   );
@@ -27,8 +28,10 @@ function App() {
   }
 
   function rollDice() {
+    setAttemps((prevAttemps) => prevAttemps + 1);
     if (isGameWin) {
       setDice(generateAllNewDice());
+      setAttemps(0);
       return;
     }
 
@@ -50,6 +53,8 @@ function App() {
       )
     );
   };
+
+  console.log(attemps);
 
   return (
     <main>
@@ -75,15 +80,23 @@ function App() {
         )}
       </div>
       <h1 className="title">Tenzies</h1>
-      <p className="instructions">
-        Roll until all dice are the same. Click each die to freeze it at its
-        current value between rolls.
-      </p>
+      {isGameWin ? (
+        <p className="win-text">
+          Congrats!🎉🎉🎉 You won in {attemps} attemps. Click New Game to play
+          again.
+        </p>
+      ) : (
+        <p className="instructions">
+          Roll until all dice are the same. Click each die to freeze it at its
+          current value between rolls.
+        </p>
+      )}
       <div className="dice-container">
         {dice.map((die) => (
           <Die key={die.id} die={die} toggleHold={toggleHold} />
         ))}
       </div>
+      <p className="attemps">Attemps: {attemps}</p>
       <button className="roll-btn" ref={buttonRef} onClick={rollDice}>
         {isGameWin ? 'New Game' : 'Roll dice'}
       </button>

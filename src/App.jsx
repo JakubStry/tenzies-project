@@ -63,6 +63,12 @@ function App() {
           }}
         />
       )}
+      {/* screen reader only */}
+      <div aria-live="polite" className="sr-only">
+        {isGameWin && (
+          <p>Congratulations! You won! Press "New Game" to start again.</p>
+        )}
+      </div>
       <h1 className="title">Tenzies</h1>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its

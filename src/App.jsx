@@ -3,17 +3,32 @@ import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
 import Die from './components/Die';
 function App() {
-  const [dice, setDice] = useState(() => generateAllNewDice());
-  const [attemps, setAttemps] = useState(0);
+  const [dice, setDice] = useState(() => {
+    const savedDice = localStorage.getItem('dice');
+    return savedDice ? JSON.parse(savedDice) : generateAllNewDice();
+  });
+
+  const [attemps, setAttemps] = useState(() => {
+    const savedAttemps = localStorage.getItem('attemps');
+    return savedAttemps ? JSON.parse(savedAttemps) : 0;
+  });
+
   const isGameWin = dice.every(
     (die) => die.isHeld && die.value === dice[0].value
   );
+
   const buttonRef = useRef(null);
+
   useEffect(() => {
     if (isGameWin) {
       buttonRef.current.focus();
     }
   }, [isGameWin]);
+
+  useEffect(() => {
+    localStorage.setItem('dice', JSON.stringify(dice));
+    localStorage.setItem('attemps', JSON.stringify(attemps));
+  }, [dice, attemps]);
 
   function getRandomValue() {
     return Math.floor(Math.random() * 6 + 1);
@@ -28,20 +43,19 @@ function App() {
   }
 
   function rollDice() {
-    setAttemps((prevAttemps) => prevAttemps + 1);
     if (isGameWin) {
+      localStorage.removeItem('dice');
+      localStorage.removeItem('attemps');
       setDice(generateAllNewDice());
       setAttemps(0);
       return;
     }
 
+    setAttemps((prevAttemps) => prevAttemps + 1);
+
     setDice((prevDice) =>
       prevDice.map((die) => {
-        if (die.isHeld) {
-          return die;
-        } else {
-          return { ...die, value: getRandomValue() };
-        }
+        return die.isHeld ? die : { ...die, value: getRandomValue() };
       })
     );
   }
@@ -53,8 +67,6 @@ function App() {
       )
     );
   };
-
-  console.log(attemps);
 
   return (
     <main>

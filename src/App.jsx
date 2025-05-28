@@ -80,17 +80,11 @@ function App() {
         )}
       </div>
       <h1 className="title">Tenzies</h1>
-      {isGameWin ? (
-        <p className="win-text">
-          Congrats!🎉🎉🎉 You won in {attemps} attemps. Click New Game to play
-          again.
-        </p>
-      ) : (
-        <p className="instructions">
-          Roll until all dice are the same. Click each die to freeze it at its
-          current value between rolls.
-        </p>
-      )}
+      <p className={isGameWin ? 'win-text' : 'instructions'}>
+        {isGameWin
+          ? `Congrats!🎉🎉🎉 You won in ${attemps} attemps. Click New Game to play again.`
+          : 'Roll until all dice are the same. Click each die to freeze it at its current value between rolls.'}
+      </p>
       <div className="dice-container">
         {dice.map((die) => (
           <Die key={die.id} die={die} toggleHold={toggleHold} />

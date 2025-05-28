@@ -14,8 +14,8 @@ body {
 
 main {
   background-color: #f5f5f5;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -23,30 +23,35 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
 .title {
-  font-size: 40px;
-  margin: 0;
+  font-size: 50px;
+  margin: 5px;
 }
 
 .instructions {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  margin-top: 0;
   text-align: center;
   font-weight: 600;
-}
-
-.instructions {
-  margin-bottom: 40px;
-  text-align: center;
-  font-weight: 600;
+  font-size: 1.25rem;
 }
 
 .win-text {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  margin-top: 0;
   text-align: center;
   font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: rgb(38, 38, 107);
+}
+
+.instructions,
+.win-text {
+  min-height: 50px;
 }
 
 .dice-container {
@@ -56,13 +61,13 @@ main {
 }
 
 .dice-container > button {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border: none;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
   font-weight: bold;
 }
@@ -72,11 +77,11 @@ main {
 }
 
 .roll-btn {
-  width: 160px;
+  width: 170px;
   color: white;
   background-color: hsl(195, 90%, 60%);
-  font-size: 1.3rem;
-  margin-top: 40px;
+  font-size: 1.4rem;
+  margin-top: 20px;
   padding: 10px 25px;
   border: none;
   border-radius: 5px;
@@ -87,6 +92,13 @@ main {
 
 .roll-btn:hover {
   background-color: hsl(195, 90%, 50%);
+}
+
+.attemps {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .sr-only {

@@ -3,16 +3,16 @@
 Simple and fun dice game built with **React**.  
 Your goal is to roll all dice until they are the same. Click each die to "hold" it between rolls.
 
-![Screenshot of the game](./game-screenshot.png)
+![Screenshot of the game](./game-screen.png)
 
 > 🧠 This project was built based on the [Scrimba React Course](https://scrimba.com/learn/learnreact)  
 > with a few improvements such as local storage, accessibility support, and better styling.
 
 ## 🧠 Rules
 
-- Roll the dice by clicking the **Roll dice** button  
-- Click on a die to **hold** its value between rolls  
-- Try to get all 10 dice to show the same number  
+- Roll the dice by clicking the **Roll dice** button
+- Click on a die to **hold** its value between rolls
+- Try to get all 10 dice to show the same number
 - Once all dice are held and show the same value, you win 🎉
 
 ## 🛠️ Tech Stack

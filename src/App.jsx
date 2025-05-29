@@ -8,9 +8,9 @@ function App() {
     return savedDice ? JSON.parse(savedDice) : generateAllNewDice();
   });
 
-  const [attemps, setAttemps] = useState(() => {
-    const savedAttemps = localStorage.getItem('attemps');
-    return savedAttemps ? JSON.parse(savedAttemps) : 0;
+  const [attempts, setAttempts] = useState(() => {
+    const savedAttempts = localStorage.getItem('attempts');
+    return savedAttempts ? JSON.parse(savedAttempts) : 0;
   });
 
   const isGameWin = dice.every(
@@ -27,8 +27,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('dice', JSON.stringify(dice));
-    localStorage.setItem('attemps', JSON.stringify(attemps));
-  }, [dice, attemps]);
+    localStorage.setItem('attempts', JSON.stringify(attempts));
+  }, [dice, attempts]);
 
   function getRandomValue() {
     return Math.floor(Math.random() * 6 + 1);
@@ -45,13 +45,13 @@ function App() {
   function rollDice() {
     if (isGameWin) {
       localStorage.removeItem('dice');
-      localStorage.removeItem('attemps');
+      localStorage.removeItem('attempts');
       setDice(generateAllNewDice());
-      setAttemps(0);
+      setAttempts(0);
       return;
     }
 
-    setAttemps((prevAttemps) => prevAttemps + 1);
+    setAttempts((prevAttempts) => prevAttempts + 1);
 
     setDice((prevDice) =>
       prevDice.map((die) => {
@@ -94,7 +94,7 @@ function App() {
       <h1 className="title">Tenzies</h1>
       <p className={isGameWin ? 'win-text' : 'instructions'}>
         {isGameWin
-          ? `Congrats!🎉🎉🎉 You won in ${attemps} attemps. Click New Game to play again.`
+          ? `Congrats!🎉🎉🎉 You won in ${attempts} attempts. Click New Game to play again.`
           : 'Roll until all dice are the same. Click each die to freeze it at its current value between rolls.'}
       </p>
       <div className="dice-container">
@@ -102,7 +102,7 @@ function App() {
           <Die key={die.id} die={die} toggleHold={toggleHold} />
         ))}
       </div>
-      <p className="attemps">Attemps: {attemps}</p>
+      <p className="attempts">Attempts: {attempts}</p>
       <button className="roll-btn" ref={buttonRef} onClick={rollDice}>
         {isGameWin ? 'New Game' : 'Roll dice'}
       </button>
